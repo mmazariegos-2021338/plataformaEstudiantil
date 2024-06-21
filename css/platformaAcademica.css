@@ -1,0 +1,67 @@
+/* Estilo para la barra de navegación */
+.bg-enc {
+    background: linear-gradient(135deg, #004d99, #003366);
+    color: #fff;
+}
+
+.navbar-brand img {
+    max-width: 150px;
+}
+
+.btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn-outline-light:hover {
+    color: #004d99;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de la tabla */
+.table {
+    margin-bottom: 0;
+}
+
+.table-header {
+    background-color: #004d99;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Estilo para el modal */
+.modal-header {
+    background-color: #004d99;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #004d99;
+    border-color: #004d99;
+}
+
+.btn-primary:hover {
+    background-color: #003366;
+    border-color: #003366;
+}

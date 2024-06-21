@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" class="alturaCompleta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio de Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .alturaCompleta {
+            height: 100%;
+        }
+        .bg-left {
+            background-color: #00ADEF;
+            height: 100%;
+        }
+        .login-container {
+            max-width: 400px;
+        }
+        .login-form {
+            padding: 30px;
+        }
+        .login-form input {
+            margin-bottom: 15px;
+        }
+        .text-muted-light {
+            color: #6c757d;
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+        .text-muted-dark {
+            color: #343a40;
+        }
+        .text-primary-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .text-primary-link:hover {
+            text-decoration: underline;
+        }
+        .logo-container {
+            position: relative;
+            top: -50px; 
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+        .card-no-border {
+            border: none;
+            box-shadow: none;
+        }
+        @media(min-width: 768px) {
+            .bg-left {
+                order: 2;
+            }
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+    </style>
+</head>
+<body class="alturaCompleta">
+    <div class="container-fluid alturaCompleta m-0 p-0">
+        <div class="row alturaCompleta w-100 p-0 m-0">
+            <div class="col-12 col-md-6 bg-left d-none d-md-flex justify-content-center align-items-center m-0 p-0">
+             
+            </div>
+            <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center pt-5">
+                <div class="logo-container mb-3 text-center">
+                    <img src="img/Imagen de WhatsApp 2024-06-07 a las 19.51.47_37b489a6.jpg" alt="Logo" class="logo">
+                </div>
+                <div>
+                    <form class="login-form" action="#">
+                        <div class="login-header text-justify">
+                            <h2 class="h5">Inicia sesión</h2>
+                            <br>
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Correo electrónico" required>
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary w-100">Iniciar Sesion</button>
+                        </div>
+                        <div class="remember-forgot mt-3 text-justify">
+                            <a href="#" class="text-muted-light d-block mb-2">¿Olvidaste tu contraseña?</a>
+                            <span class="text-muted-dark">¿No tienes una cuenta? <a href="#" class="text-primary-link">Regístrate aquí</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

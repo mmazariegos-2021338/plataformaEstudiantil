@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Académico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+       
+        .barra-navegacion {
+            background: linear-gradient(135deg, #004d99, #003366);
+            color: #fff;
+        }
+
+        .logo-img {
+            max-width: 150px;
+        }
+
+        .btn-blanco {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-blanco:hover {
+            color: #004d99;
+            background-color: #fff;
+            border-color: #fff;
+        }
+
+        .contenedor-tabla {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        .tabla {
+            margin-bottom: 0;
+        }
+
+        .encabezado-tabla {
+            background-color: #004d99;
+            color: #fff;
+        }
+
+        .tabla-zebra tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .tabla-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .tabla th,
+        .tabla td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+     
+        .encabezado-modal {
+            background-color: #004d99;
+            color: #fff;
+        }
+
+        .btn-primario {
+            background-color: #004d99;
+            border-color: #004d99;
+        }
+
+        .btn-primario:hover {
+            background-color: #003366;
+            border-color: #003366;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg barra-navegacion">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <img src="img/MicrosoftTeams-image (4).png" class="logo-img" alt="Logo">
+            </a>
+
+            <div class="d-flex align-items-center ms-auto">
+                <h3 class="m-3 text-white display-12">Bienvenido: Marvin Mazariegos</h3>
+                <button onclick="abrirModal()" class="btn btn-blanco me-2">
+                    <i class="fas fa-plus"></i>  Agregar 
+                </button>
+                <button class="btn btn-blanco">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalRecurso" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header encabezado-modal">
+                    <h2 class="modal-title"> Recurso</h2>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioRecurso">
+                        <div class="mb-3">
+                            <label for="tituloRecurso">Título</label>
+                            <input type="text" id="tituloRecurso" class="form-control" placeholder="Título">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionRecurso">Descripción</label>
+                            <input type="text" id="descripcionRecurso" class="form-control" placeholder="Descripción">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaPublicacionRecurso">Fecha de publicación</label>
+                            <input type="date" id="fechaPublicacionRecurso" class="form-control" value="2024-06-17">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoRecurso">Tipo</label>
+                            <select class="form-select" id="tipoRecurso" onchange="mostrarFechaLimite()">
+                                <option class="form-control" value="contenido">Contenido</option>
+                                <option class="form-control" value="tarea">Tarea</option>
+                            </select>
+                        </div>
+                        <div id="fechaLimiteRecurso" class="mb-3" style="display: none;">
+                            <label for="fechaEntregaRecurso">Fecha límite de entrega</label>
+                            <input type="date" id="fechaEntregaRecurso" class="form-control" value="2024-06-27">
+                        </div>
+                        <button class="btn btn-primario" type="submit" onclick="crearRecurso()">Añadir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="display-12">Nombre del curso: Programacion</h2>
+        <h4 class="display-12">Catedrático:  Jeffry </h4>
+        <ul class="nav nav-tabs mt-5" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="contenidos-tab" data-bs-toggle="tab" data-bs-target="#contenidos"
+                    type="button" role="tab" aria-controls="contenidos" aria-selected="true">Contenidos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tareas-tab" data-bs-toggle="tab" data-bs-target="#tareas" type="button"
+                    role="tab" aria-controls="tareas" aria-selected="false">Tareas por entregar</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="contenidos" role="tabpanel" aria-labelledby="contenidos-tab">
+                <p id="mensajeContenidos">Contenido de la pestaña "Contenidos"</p>
+            </div>
+            <div class="tab-pane fade" id="tareas" role="tabpanel" aria-labelledby="tareas-tab">
+                <p id="mensajeTareas">Contenido de la pestaña "Tareas"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-sm mt-4" id="contenedorTarjetas">
+    </div>
+
+    <script>
+        function abrirModal() {
+            var modal = new bootstrap.Modal(document.getElementById("modalRecurso"));
+            modal.show();
+        }
+
+        function mostrarFechaLimite() {
+            var tipoRecurso = document.getElementById("tipoRecurso").value;
+            var fechaLimiteRecurso = document.getElementById("fechaLimiteRecurso");
+            if (tipoRecurso === "tarea") {
+                fechaLimiteRecurso.style.display = "block";
+            } else {
+                fechaLimiteRecurso.style.display = "none";
+            }
+        }
+
+        function crearRecurso() {
+            event.preventDefault();
+            var contenidosTab = document.querySelector('#contenidos');
+            var tareasTab = document.querySelector('#tareas');
+            var tituloRecurso = document.getElementById("tituloRecurso").value;
+            var descripcionRecurso = document.getElementById("descripcionRecurso").value;
+            var fechaPublicacionRecurso = document.getElementById("fechaPublicacionRecurso").value;
+            var fechaEntregaRecurso = document.getElementById("fechaEntregaRecurso").value;
+            var tipoRecurso = document.getElementById("tipoRecurso").value;
+            var mensajeContenidos = document.getElementById("mensajeContenidos");
+            var mensajeTareas = document.getElementById("mensajeTareas");
+
+            if (tipoRecurso === "contenido") {
+                mensajeContenidos.style.display = "none";
+
+                var tarjeta = document.createElement("div");
+                tarjeta.className = "card d-inline-block col-12 m-2";
+
+                var encabezadoTarjeta = document.createElement("div");
+                encabezadoTarjeta.className = "card-header";
+
+                var tituloTarjeta = document.createElement("h5");
+                tituloTarjeta.className = "card-title";
+                tituloTarjeta.innerHTML = "Contenido";
+                encabezadoTarjeta.appendChild(tituloTarjeta);
+
+                tarjeta.appendChild(encabezadoTarjeta);
+
+                var cuerpoTarjeta = document.createElement("div");
+                cuerpoTarjeta.className = "card-body";
+
+                var tituloContenido = document.createElement("h2");
+                tituloContenido.className = "card-text";
+                tituloContenido.innerHTML = tituloRecurso;
+                cuerpoTarjeta.appendChild(tituloContenido);
+
+                var descripcionContenido = document.createElement("p");
+                descripcionContenido.className = "card-text";
+                descripcionContenido.innerHTML = descripcionRecurso;
+                cuerpoTarjeta.appendChild(descripcionContenido);
+
+                var publicacionContenido = document.createElement("p");
+                publicacionContenido.className = "card-text";
+                publicacionContenido.innerHTML = "<strong>Fecha de publicación: </strong>" + fechaPublicacionRecurso;
+                cuerpoTarjeta.appendChild(publicacionContenido);
+
+                tarjeta.appendChild(cuerpoTarjeta);
+
+                contenidosTab.appendChild(tarjeta);
+
+                document.getElementById('formularioRecurso').reset();
+
+                var modal = new bootstrap.Modal(document.getElementById("modalRecurso"));
+                modal.hide();
+            } else if (tipoRecurso === "tarea") {
+                mensajeTareas.style.display = "none";
+
+                var tarjeta = document.createElement("div");
+                tarjeta.className = "card d-inline-block col-12 m-2";
+
+                var encabezadoTarjeta = document.createElement("div");
+                encabezadoTarjeta.className = "card-header";
+
+                var tituloTarjeta = document.createElement("h5");
+                tituloTarjeta.className = "card-title";
+                tituloTarjeta.innerHTML = "Tarea";
+                encabezadoTarjeta.appendChild(tituloTarjeta);
+
+                tarjeta.appendChild(encabezadoTarjeta);
+
+                var cuerpoTarjeta = document.createElement("div");
+                cuerpoTarjeta.className = "card-body";
+
+                var tituloTarea = document.createElement("h2");
+                tituloTarea.className = "card-text";
+                tituloTarea.innerHTML = tituloRecurso;
+                cuerpoTarjeta.appendChild(tituloTarea);
+
+                var descripcionTarea = document.createElement("p");
+                descripcionTarea.className = "card-text";
+                descripcionTarea.innerHTML = descripcionRecurso;
+                cuerpoTarjeta.appendChild(descripcionTarea);
+
+                var publicacionTarea = document.createElement("p");
+                publicacionTarea.className = "card-text";
+                publicacionTarea.innerHTML = "<strong>Fecha de publicación: </strong>" + fechaPublicacionRecurso;
+                cuerpoTarjeta.appendChild(publicacionTarea);
+
+                var entregarTarea = document.createElement("p");
+                entregarTarea.className = "card-text";
+                entregarTarea.innerHTML = "<strong> Fecha de Entrega: </strong>" + fechaEntregaRecurso;
+                cuerpoTarjeta.appendChild(entregarTarea);
+
+                tarjeta.appendChild(cuerpoTarjeta);
+
+                tareasTab.appendChild(tarjeta);
+
+                document.getElementById('formularioRecurso').reset();
+
+                var modal = new bootstrap.Modal(document.getElementById("modalRecurso"));
+                modal.hide();
+            }
+        }
+    </script>
+</body>
+
+</html>

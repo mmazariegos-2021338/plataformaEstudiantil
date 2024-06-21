@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Fotografía</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #28b24b;
+            padding: 15px 30px;
+            display: block;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 18px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: 0 4px 0 0 #20732f, 0 0 15px 2px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .btn:hover {
+            background-color: #249e41;
+        }
+
+        .galeria, .galeriaUnaColumna {
+            width: 100%;
+            display: grid;
+            gap: 10px;
+        }
+
+        .galeria {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+
+        .imagenActual {
+            width: 100%;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .galeriaUnaColumna {
+            grid-template-columns: 1fr;
+        }
+
+        label, input[type="file"], input[type="checkbox"] {
+            display: block;
+            margin: 10px 0;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        label {
+            margin-top: 20px;
+            color: #555;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .btn {
+                width: 80%;
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            label, input[type="file"], input[type="checkbox"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Selecciona una imagen!</h1>
+    <input type="file" id="campoFoto" accept="image/*"> <br>
+
+    <label for="columnaUnica">¿Ver una sola columna?</label>
+    <input type="checkbox" onclick="unaColumna()" id="columnaUnica"><br>
+
+    <button class="btn" onclick="repetirImagenes()">Repetir</button>
+    <div class="galeria" id="imagenesRepetidas"></div><br>
+</body>
+<script>
+    function repetirImagenes() {
+        var campoFoto = document.getElementById("campoFoto");
+
+        var loteImagenesRepetidas = document.getElementById("imagenesRepetidas");
+
+        // Capturar la imagen seleccionada
+        var fotoRepetir = campoFoto.files[0];
+        // Crear una URL temporal para la imagen seleccionada
+        var ubicacionFoto = URL.createObjectURL(fotoRepetir);
+
+        // Crear un nuevo elemento de imagen
+        var nuevaImagen = document.createElement("img");
+        nuevaImagen.src = ubicacionFoto;
+        nuevaImagen.setAttribute("class", "imagenActual");
+        // Añadir la nueva imagen al contenedor
+        document.getElementById('imagenesRepetidas').appendChild(nuevaImagen);
+    }
+
+    function unaColumna() {
+        var esUnaColumna = document.getElementById('columnaUnica').checked;
+        var contenedor = document.getElementById('imagenesRepetidas');
+
+        if (esUnaColumna) {
+            // Cambiar la clase para mostrar las imágenes en una columna
+            contenedor.setAttribute("class", "galeriaUnaColumna");
+        } else {
+            // Cambiar la clase para mostrar las imágenes en varias columnas
+            contenedor.setAttribute("class", "galeria");
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro de Estudiante</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Formulario para ingresar un producto -->
+        <h2>Formulario para Ingresar un Producto</h2>
+        <form id="formularioProducto">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="nombreProducto">Nombre del Producto</label>
+                    <input type="text" class="form-control" id="nombreProducto" required placeholder="Nombre del Producto">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="categoria">Categoría</label>
+                    <input type="text" class="form-control" id="categoria" required placeholder="Categoría">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="productId">ID del Producto</label>
+                    <input type="text" class="form-control" id="productId" placeholder="ID del Producto">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="precio">Precio</label>
+                    <input type="number" step="0.01" class="form-control" id="precio" placeholder="Precio">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="cantidadStock">Cantidad en Stock</label>
+                    <input type="number" class="form-control" id="cantidadStock" placeholder="Cantidad en Stock">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="proveedor">Proveedor</label>
+                    <input type="text" class="form-control" id="proveedor" placeholder="Proveedor">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar Producto</button>
+        </form>
+        <br>
+        <!-- Tabla para visualizar los productos ingresados -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Producto</th>
+                        <th>Categoría</th>
+                        <th>ID del Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad en Stock</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody id="datosProducto">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('formularioProducto').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var nombreProducto = document.getElementById('nombreProducto').value;
+            var categoria = document.getElementById('categoria').value;
+            var productId = document.getElementById('productId').value;
+            var precio = document.getElementById('precio').value;
+            var cantidadStock = document.getElementById('cantidadStock').value;
+            var proveedor = document.getElementById('proveedor').value;
+
+            var tr = document.createElement('tr');
+
+            var tdNombreProducto = document.createElement('td');
+            var tdCategoria = document.createElement('td');
+            var tdProductId = document.createElement('td');
+            var tdPrecio = document.createElement('td');
+            var tdCantidadStock = document.createElement('td');
+            var tdProveedor = document.createElement('td');
+
+            tdNombreProducto.textContent = nombreProducto;
+            tdCategoria.textContent = categoria;
+            tdProductId.textContent = productId;
+            tdPrecio.textContent = precio;
+            tdCantidadStock.textContent = cantidadStock;
+            tdProveedor.textContent = proveedor;
+
+            tr.appendChild(tdNombreProducto);
+            tr.appendChild(tdCategoria);
+            tr.appendChild(tdProductId);
+            tr.appendChild(tdPrecio);
+            tr.appendChild(tdCantidadStock);
+            tr.appendChild(tdProveedor);
+
+            document.getElementById('datosProducto').appendChild(tr);
+
+            document.getElementById('formularioProducto').reset();
+        });
+    </script>
+</body>
+</html>
